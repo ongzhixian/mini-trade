@@ -348,3 +348,12 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Custom
+ignore/
+ako.ps1
+*secrets.json
+*Production.json
+**/deploy.zip
+.azure
+**/LivingDoc.html
