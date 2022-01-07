@@ -351,6 +351,7 @@ MigrationBackup/
 
 # Custom
 ignore/
+qa-reports/
 ako.ps1
 *secrets.json
 *Production.json
