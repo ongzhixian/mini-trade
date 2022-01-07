@@ -22,6 +22,18 @@ dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.DependencyInject
 dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.Http
 
 
+dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.Configuration.UserSecrets
+
+dotnet add .\MiniTrade.ConsoleApp\ package Azure.Messaging.WebPubSub
+dotnet add .\MiniTrade.ConsoleApp\ package Azure.Storage.Queues
+dotnet add .\MiniTrade.ConsoleApp\ package Azure.Data.Tables
+Azure.Storage.Blobs
+
+Microsoft.Data.Analysis
+Microsoft.ML
+Infer.net
+
+
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog.Extensions.Hosting
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog.Formatting.Compact
