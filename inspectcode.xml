@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InspectCodeOptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Debug>false</Debug>
+  <Verbosity>INFO</Verbosity>
+  <DisabledSettingsLayers />
+  <SuppressBuildInSettings>false</SuppressBuildInSettings>
+  <Properties />
+  <TargetsForReferences />
+  <TargetsForItems />
+  <Extensions />
+  <ExtensionSources />
+  <CustomSettingsProfiles />
+  <OutputFileFormat>Xml</OutputFileFormat>
+  <ParallelJobs>0</ParallelJobs>
+  <UseAbsolutePaths>false</UseAbsolutePaths>
+  <NoSolutionWideAnalysis>false</NoSolutionWideAnalysis>
+  <SolutionWideAnalysis>false</SolutionWideAnalysis>
+  <IncludedProjects />
+  <DumpIssuesTypes>false</DumpIssuesTypes>
+  <MinSeverity>SUGGESTION</MinSeverity>
+  <Measure>None</Measure>
+  <NoBuild xsi:nil="true" />
+  <Build xsi:nil="true" />
+</InspectCodeOptions>
