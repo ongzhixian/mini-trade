@@ -4,17 +4,20 @@ using Microsoft.Extensions.Logging;
 using MiniTrade.ConsoleApp.Services;
 using AppStartup = MiniTrade.ConsoleApp.Services.AppStartupService;
 
-HostBuilder builder = new HostBuilder();
+IHostBuilder builder = Host.CreateDefaultBuilder(args);
 
-AppStartup.ConfigureHost(builder.ConfigureHostConfiguration);
+Console.Write("Configuring application...");
 
 AppStartup.ConfigureApp(builder.ConfigureAppConfiguration);
 
-AppStartup.ConfigureLogging(builder.ConfigureLogging);
+#pragma warning disable S125 // Sections of code should not be commented out
+// AppStartup.ConfigureLogging(builder.ConfigureLogging);
+#pragma warning restore S125 // Sections of code should not be commented out
 
 AppStartup.ConfigureServices(builder.ConfigureServices);
 
-using (ILoggerFactory loggerFactory = new LoggerFactory())
+Console.WriteLine("OK");
+
 using (IHost host = builder.Build())
 {
     IServiceProvider services = host.Services;
@@ -25,13 +28,15 @@ using (IHost host = builder.Build())
     {
         log.LogInformation("Application start");
 
-        IMyService myService = services.GetRequiredService<IMyService>();
-
+#pragma warning disable S125 // Sections of code should not be commented out
+        // services.GetRequiredService<IMyService>().DoWork();
+#pragma warning restore S125 // Sections of code should not be commented out
+        
         await host.RunAsync();
     }
     catch (Exception ex)
     {
-        log.LogError(ex, string.Empty);
+        log.LogError(ex, "Caught exception at root.");
         throw;
     }
 }
