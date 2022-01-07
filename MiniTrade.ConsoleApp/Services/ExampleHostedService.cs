@@ -1,16 +1,13 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniTrade.ConsoleApp.Services
 {
     internal class ExampleHostedService : IHostedService
     {
-        ILogger<ExampleHostedService> logger;
+        private readonly ILogger<ExampleHostedService> logger;
+
+        private CancellationToken cancellationToken;
 
         public ExampleHostedService(ILogger<ExampleHostedService> logger, IHostApplicationLifetime appLifetime)
         {
@@ -27,22 +24,9 @@ namespace MiniTrade.ConsoleApp.Services
         {
             logger.LogInformation("1. StartAsync has been called.");
 
+            this.cancellationToken = cancellationToken;
+
             return Task.CompletedTask;
-
-            //return Task.Run(async () =>
-            //{
-            //    int i = 0;
-
-            //    while (true)
-            //    {
-            //        logger.LogInformation("Do some work {i}", i++);
-
-            //        //System.Threading.Thread.Sleep(1000);
-
-            //        await Task.Delay(1000);
-            //    }
-            //});
-
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
@@ -55,6 +39,11 @@ namespace MiniTrade.ConsoleApp.Services
         private void OnStarted()
         {
             logger.LogInformation("2. OnStarted has been called.");
+
+            Task.Run(async () =>
+            {
+                await DoWorkAsync(cancellationToken);
+            }, cancellationToken);
         }
 
         private void OnStopping()
@@ -65,6 +54,18 @@ namespace MiniTrade.ConsoleApp.Services
         private void OnStopped()
         {
             logger.LogInformation("5. OnStopped has been called.");
+        }
+
+        private async Task DoWorkAsync(CancellationToken cancellationToken)
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                logger.LogInformation("{serviceClass} task doing background work.", nameof(ExampleHostedService));
+
+                // do some work
+
+                await Task.Delay(1000, cancellationToken);
+            }
         }
     }
 }
