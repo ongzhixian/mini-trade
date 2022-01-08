@@ -1,71 +1,70 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace MiniTrade.ConsoleApp.Services
+namespace MiniTrade.ConsoleApp.Services;
+
+internal class ExampleHostedService : IHostedService
 {
-    internal class ExampleHostedService : IHostedService
+    private readonly ILogger<ExampleHostedService> logger;
+
+    private CancellationToken cancellationToken;
+
+    public ExampleHostedService(ILogger<ExampleHostedService> logger, IHostApplicationLifetime appLifetime)
     {
-        private readonly ILogger<ExampleHostedService> logger;
+        this.logger = logger;
 
-        private CancellationToken cancellationToken;
+        appLifetime.ApplicationStarted.Register(OnStarted);
 
-        public ExampleHostedService(ILogger<ExampleHostedService> logger, IHostApplicationLifetime appLifetime)
+        appLifetime.ApplicationStopping.Register(OnStopping);
+
+        appLifetime.ApplicationStopped.Register(OnStopped);
+    }
+
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
+        logger.LogInformation("1. StartAsync has been called.");
+
+        this.cancellationToken = cancellationToken;
+
+        return Task.CompletedTask;
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        logger.LogInformation("4. StopAsync has been called.");
+
+        return Task.CompletedTask;
+    }
+
+    private void OnStarted()
+    {
+        logger.LogInformation("2. OnStarted has been called.");
+
+        Task.Run(async () =>
         {
-            this.logger = logger;
+            await DoWorkAsync(cancellationToken);
+        }, cancellationToken);
+    }
 
-            appLifetime.ApplicationStarted.Register(OnStarted);
+    private void OnStopping()
+    {
+        logger.LogInformation("3. OnStopping has been called.");
+    }
 
-            appLifetime.ApplicationStopping.Register(OnStopping);
-            
-            appLifetime.ApplicationStopped.Register(OnStopped);
-        }
+    private void OnStopped()
+    {
+        logger.LogInformation("5. OnStopped has been called.");
+    }
 
-        public Task StartAsync(CancellationToken cancellationToken)
+    private async Task DoWorkAsync(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
         {
-            logger.LogInformation("1. StartAsync has been called.");
+            logger.LogInformation("{serviceClass} task doing background work.", nameof(ExampleHostedService));
 
-            this.cancellationToken = cancellationToken;
+            // do some work
 
-            return Task.CompletedTask;
-        }
-
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            logger.LogInformation("4. StopAsync has been called.");
-
-            return Task.CompletedTask;
-        }
-
-        private void OnStarted()
-        {
-            logger.LogInformation("2. OnStarted has been called.");
-
-            Task.Run(async () =>
-            {
-                await DoWorkAsync(cancellationToken);
-            }, cancellationToken);
-        }
-
-        private void OnStopping()
-        {
-            logger.LogInformation("3. OnStopping has been called.");
-        }
-
-        private void OnStopped()
-        {
-            logger.LogInformation("5. OnStopped has been called.");
-        }
-
-        private async Task DoWorkAsync(CancellationToken cancellationToken)
-        {
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                logger.LogInformation("{serviceClass} task doing background work.", nameof(ExampleHostedService));
-
-                // do some work
-
-                await Task.Delay(1000, cancellationToken);
-            }
+            await Task.Delay(1000, cancellationToken);
         }
     }
 }
