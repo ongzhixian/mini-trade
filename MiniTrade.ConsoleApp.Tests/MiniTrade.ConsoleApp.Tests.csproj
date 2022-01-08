@@ -14,5 +14,9 @@
     <PackageReference Include="FluentAssertions" Version="6.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MiniTrade.ConsoleApp\MiniTrade.ConsoleApp.csproj" />
+  </ItemGroup>
+
 </Project>
 
