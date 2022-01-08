@@ -27,11 +27,15 @@ dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.Configuration.Us
 dotnet add .\MiniTrade.ConsoleApp\ package Azure.Messaging.WebPubSub
 dotnet add .\MiniTrade.ConsoleApp\ package Azure.Storage.Queues
 dotnet add .\MiniTrade.ConsoleApp\ package Azure.Data.Tables
-Azure.Storage.Blobs
+dotnet add .\MiniTrade.ConsoleApp\ package Azure.Storage.Blobs
+dotnet add .\MiniTrade.ConsoleApp\ package MongoDB.Driver
+
+dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Net.Http.Headers
 
 Microsoft.Data.Analysis
 Microsoft.ML
-Infer.net
+Microsoft.ML.Probabilistic.Compiler
+
 
 
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog
@@ -40,3 +44,7 @@ dotnet add .\MiniTrade.ConsoleApp\ package Serilog.Formatting.Compact
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog.Settings.Configuration
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog.Sinks.Console
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog.Sinks.File
+
+
+dotnet new specflowproject -n MiniTrade.ConsoleApp.Tests --framework net6.0 --unittestprovider mstest
+dotnet add package Moq
