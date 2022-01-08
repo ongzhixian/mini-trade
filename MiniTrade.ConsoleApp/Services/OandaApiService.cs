@@ -47,8 +47,11 @@ public class OandaApiService
         AccountsResponse? result =
             await JsonSerializer.DeserializeAsync<AccountsResponse>(strm, jsonSerializerOptions, stopToken);
 
+        result = null;
+        throw new ObjectNullException<AccountsResponse>(nameof(result));
+
         if (result == null)
-            throw new NullResultException<AccountsResponse>(result);
+            throw new ObjectNullException<AccountsResponse>(nameof(result));
 
         return result;
     }
