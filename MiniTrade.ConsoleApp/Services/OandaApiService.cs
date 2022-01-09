@@ -47,8 +47,50 @@ public class OandaApiService
         AccountsResponse? result =
             await JsonSerializer.DeserializeAsync<AccountsResponse>(strm, jsonSerializerOptions, stopToken);
 
-        result = null;
-        throw new ObjectNullException<AccountsResponse>(nameof(result));
+        if (result == null)
+            throw new ObjectNullException<AccountsResponse>(nameof(result));
+
+        return result;
+    }
+
+    internal async Task<AccountResponse> GetAccountAsync(string accountId, CancellationToken stopToken)
+    {
+        string url = $"{options.Value.ApiUrl}/v3/accounts/{accountId}";
+
+        using HttpResponseMessage? httpResponse = await httpClient.GetAsync(url, stopToken);
+
+        httpResponse.EnsureSuccessStatusCode();
+
+        using Stream? strm = await httpResponse.Content.ReadAsStreamAsync(stopToken);
+
+        //using FileStream fs = new("cache/account.json", FileMode.OpenOrCreate);
+        //strm.CopyTo(fs, (int)strm.Length);
+
+        AccountResponse? result =
+            await JsonSerializer.DeserializeAsync<AccountResponse>(strm, jsonSerializerOptions, stopToken);
+
+        if (result == null)
+            throw new ObjectNullException<AccountsResponse>(nameof(result));
+
+        return result;
+
+    }
+
+    internal async Task<InstrumentsResponse> GetAccountInstrumentsAsync(string accountId, CancellationToken stopToken)
+    {
+        string url = $"{options.Value.ApiUrl}/v3/accounts/{accountId}/instruments";
+
+        using HttpResponseMessage? httpResponse = await httpClient.GetAsync(url, stopToken);
+
+        httpResponse.EnsureSuccessStatusCode();
+
+        using Stream? strm = await httpResponse.Content.ReadAsStreamAsync(stopToken);
+
+        //using FileStream fs = new("cache/account-instruments.json", FileMode.OpenOrCreate);
+        //strm.CopyTo(fs, (int)strm.Length);
+
+        InstrumentsResponse? result =
+            await JsonSerializer.DeserializeAsync<InstrumentsResponse>(strm, jsonSerializerOptions, stopToken);
 
         if (result == null)
             throw new ObjectNullException<AccountsResponse>(nameof(result));

@@ -32,6 +32,8 @@ dotnet add .\MiniTrade.ConsoleApp\ package MongoDB.Driver
 
 dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Net.Http.Headers
 
+dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.Caching.Memory
+
 Microsoft.Data.Analysis
 Microsoft.ML
 Microsoft.ML.Probabilistic.Compiler

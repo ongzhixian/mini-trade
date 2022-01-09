@@ -30,23 +30,29 @@ internal static class AppStartupService
     {
         configureServices.Invoke((host, services) =>
         {
+            
+
             RegisterConfigurationInstances(host, services);
 
-            // RegisterHttpClients(services);
+            // # RegisterHttpClients(services);
 
             //services.AddHttpClient();
             services.AddHttpClient<OandaApiService>();
 
-            // RegisterServices(services);
+            // # RegisterCaching(services);
+
+            services.AddMemoryCache(); // default IMemoryCache implementation
+
+            // # RegisterServices(services);
 
             //services.AddSingleton<IMyService, MyService>();
 
-            // RegisterHostedServices(services);
+            // # RegisterHostedServices(services);
 
             //services.AddHostedService<ExampleHostedService>();
             //services.AddHostedService<ExampleBackgroundService>();
 
-            // Azure (examples)
+            // # Azure (examples)
 
             //services.AddHostedService<PubSubConsumerService>();
             //services.AddHostedService<PubSubPublisherService>();
@@ -55,11 +61,11 @@ internal static class AppStartupService
             //services.AddHostedService<StorageTableService>();
             //services.AddHostedService<StorageBlobService>();
 
-            // Mongo (examples)
+            // # Mongo (examples)
 
             //services.AddHostedService<MongoDbMiniToolsService>();
 
-            // Oanda 
+            // # Oanda 
 
             //services.AddHostedService<TradeStrategyService>();
 

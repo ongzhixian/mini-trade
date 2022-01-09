@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MiniTrade.ConsoleApp.Helpers;
 using MiniTrade.ConsoleApp.Models;
 using MiniTrade.ConsoleApp.Models.Oanda;
 using MiniTrade.ConsoleApp.Services;
+using System.Text;
 using System.Text.Json;
 using AppStartup = MiniTrade.ConsoleApp.Services.AppStartupService;
 
@@ -27,6 +30,9 @@ using (IHost host = builder.Build())
     IServiceProvider services = host.Services;
 
     ILogger log = services.GetRequiredService<ILogger<Program>>();
+
+    IMemoryCache cache = services.GetRequiredService<IMemoryCache>();
+
 
     try
     {
@@ -63,31 +69,53 @@ using (IHost host = builder.Build())
 
         //var json = JsonSerializer.Serialize< AccountsResponse>(response);
         //Console.WriteLine(json);
+        
+        var api = services.GetRequiredService<OandaApiService>();
 
-        try
-        {
-            var r = services.GetRequiredService<OandaApiService>();
+        //string outputPath = "cache/sample-cache.json";
+        
+        //AccountsResponse? accounts;
 
-            if (r != null)
-            {
-                Console.WriteLine("SERVICE EXISTS");
-            }
-            else
-            {
-                Console.WriteLine("SERVICE MISSING");
-            }
+        //// Load data from data file (if it exists)
+        //accounts = await FileHelper.LoadFileAsync<AccountsResponse>(outputPath);
 
-            await r.GetAccountsAsync(CancellationToken.None);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            Console.WriteLine(ex);
+        //// If data is not available, pull
+        //if (accounts == null)
+        //{
+        //    try
+        //    {
+        //        accounts = await api.GetAccountsAsync(CancellationToken.None);
 
-        }
+        //        FileHelper.SaveToFile<AccountsResponse>(outputPath, accounts);
+
+        //        //if ((accounts != null) && (accounts.Accounts != null))
+        //        //{
+        //        //    log.LogInformation("{accounts}", accounts.Accounts.Count());
+
+        //        //    foreach (var account in accounts.Accounts)
+        //        //    {
+        //        //        log.LogInformation("{Id}, {Mt4AccountID}",
+        //        //            account.Id, account.Mt4AccountID);
+        //        //    }
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //    }
+        //}
 
 
+        //string json = await FileHelper.LoadFileAsync(outputPath);
+        // //AccountsResponse? accounts = cache.Get<AccountsResponse>("oandaAccounts");
 
+        //if (accounts != null)
+        //    cache.Set<AccountsResponse>("oandaAccounts", accounts, 
+        //        TimeSpan.FromSeconds(5));
+
+        //await api.GetAccountAsync("101-003-11976008-002", CancellationToken.None);
+
+        await api.GetAccountInstrumentsAsync("101-003-11976008-002", CancellationToken.None);
 
         await host.RunAsync();
     }
