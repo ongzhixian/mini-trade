@@ -1,0 +1,21 @@
+version: '3.8'
+
+services: 
+
+  testApp:
+    image: testapp
+    build:
+        context: MiniTrade.ConsoleApp
+        dockerfile: Dockerfile
+    environment:
+        - backendUrl=http://backend
+    ports:
+        - "5900:80"
+    volumes:
+        - miniTrade-consoleApp-data:/data
+        - type: bind
+          source: ./_runtime-data
+          target: /data
+
+volumes:
+    miniTrade-consoleApp-data:
