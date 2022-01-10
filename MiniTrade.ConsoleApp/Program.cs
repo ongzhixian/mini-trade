@@ -68,6 +68,15 @@ using (IHost host = builder.Build())
 
         //await api.GetAccountInstrumentsAsync("101-003-11976008-002", CancellationToken.None);
 
+        //ExampleEventEmitterService.ThresholdReached += ExampleEventEmitterService.FireThresholdReached;
+
+        // Subscribe
+        //ExampleEventEmitterService.Notify += ExampleEventEmitterService.ExampleEventEmitterService_TriggerEvent;
+        ExampleEventEmitterService.Notify += delegate (object? sender, EventArgs e)
+        {
+            Console.WriteLine("asd");
+        };
+
 
         await host.RunAsync();
     }

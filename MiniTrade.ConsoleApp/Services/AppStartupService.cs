@@ -50,6 +50,7 @@ internal static class AppStartupService
 
             //services.AddHostedService<ExampleHostedService>();
             //services.AddHostedService<ExampleBackgroundService>();
+            services.AddHostedService<ExampleEventEmitterService>();
 
             // # Azure (examples)
 

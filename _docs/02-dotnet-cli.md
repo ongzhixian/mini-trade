@@ -36,8 +36,12 @@ dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.Caching.Memory
 
 Microsoft.Data.Analysis
 Microsoft.ML
-Microsoft.ML.Probabilistic.Compiler
 
+Microsoft.ML.Probabilistic
+Microsoft.ML.Probabilistic.Compiler
+Microsoft.ML.Probabilistic.Learners
+Microsoft.ML.Probabilistic.Visualizers.Windows
+Microsoft.ML.Probabilistic.Compiler.Visualizers.Window
 
 
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog
