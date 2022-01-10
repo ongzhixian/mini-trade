@@ -22,7 +22,7 @@ Console.Write("Configuring application...");
 AppStartup.ConfigureApp(builder.ConfigureAppConfiguration);
 
 #pragma warning disable S125 // Sections of code should not be commented out
-// AppStartup.ConfigureLogging(builder.ConfigureLogging);
+//AppStartup.ConfigureLogging(builder.ConfigureLogging);
 #pragma warning restore S125 // Sections of code should not be commented out
 
 AppStartup.ConfigureServices(builder.ConfigureServices);
@@ -58,7 +58,7 @@ using (IHost host = builder.Build())
         //log.LogInformation("{a2}", a2.Value.ConnectionString);
         //log.LogInformation("{a3}", a3.Value.ConnectionString);
         //log.LogInformation("The A4 {a4}, {a}, {b}", a4.Value.ApiKey, a4.Value.ApiUrl, a4.Value.StreamUrl);
-        
+
 
 #pragma warning restore S125 // Sections of code should not be commented out
 

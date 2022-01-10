@@ -12,6 +12,7 @@ internal static class AppStartupService
     {
         configureAppConfiguration.Invoke((_, configurationBuilder) =>
         {
+            configurationBuilder.SetBasePath(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
             configurationBuilder.AddJsonFile("appsecrets.json", optional: true, reloadOnChange: true);
         });
     }
@@ -30,8 +31,6 @@ internal static class AppStartupService
     {
         configureServices.Invoke((host, services) =>
         {
-            
-
             RegisterConfigurationInstances(host, services);
 
             // # RegisterHttpClients(services);
@@ -86,7 +85,6 @@ internal static class AppStartupService
             o.ApiUrl = host.Configuration.GetSection("Oanda:ApiUrl").Value;
             o.StreamUrl = host.Configuration.GetSection("Oanda:StreamUrl").Value;
         });
-
 
 
 #pragma warning disable S125 // Sections of code should not be commented out
