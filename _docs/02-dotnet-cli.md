@@ -54,3 +54,5 @@ dotnet add .\MiniTrade.ConsoleApp\ package Serilog.Sinks.File
 
 dotnet new specflowproject -n MiniTrade.ConsoleApp.Tests --framework net6.0 --unittestprovider mstest
 dotnet add package Moq
+
+
