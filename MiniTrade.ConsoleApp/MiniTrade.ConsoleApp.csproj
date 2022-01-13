@@ -6,6 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UserSecretsId>8f26ab1f-7c94-4ef0-8a8d-ac7731bfa2b8</UserSecretsId>
+    <!-- 
+      Force copy configuration options from `runtimeconfig.template.json` to <app>.runtimeconfig.json
+      (for project output != exe)
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    -->
   </PropertyGroup>
 
   <ItemGroup>

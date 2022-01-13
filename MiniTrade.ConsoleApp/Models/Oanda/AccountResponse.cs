@@ -4,11 +4,8 @@ namespace MiniTrade.ConsoleApp.Models.Oanda;
 
 internal class AccountResponse
 {
-    //[JsonPropertyName("accounts")]
-    //public IEnumerable<AccountProperties>? Accounts { get; set; }
-
     [JsonPropertyName("account")]
-    public Account Account { get; set; }
+    public Account? Account { get; set; }
 
     [JsonPropertyName("lastTransactionID")]
     public string LastTransactionID { get; set; } = string.Empty;
@@ -34,7 +31,7 @@ internal class Account
 
 
     [JsonPropertyName("guaranteedStopLossOrderParameters")]
-    public GuaranteedStopLossOrderParameters GuaranteedStopLossOrderParameters { get; set; }
+    public GuaranteedStopLossOrderParameters? GuaranteedStopLossOrderParameters { get; set; }
 
     [JsonPropertyName("guaranteedStopLossOrderMode")]
     public string GuaranteedStopLossOrderMode { get; set; } = string.Empty;
@@ -140,13 +137,13 @@ internal class Account
     public string LastTransactionID { get; set; } = string.Empty;
 
     [JsonPropertyName("trades")]
-    public IEnumerable<TradeSummary> Trades { get; set; }
+    public IEnumerable<TradeSummary>? Trades { get; set; }
 
     [JsonPropertyName("positions")]
-    public IEnumerable<Position> Positions { get; set; }
+    public IEnumerable<Position>? Positions { get; set; }
 
     [JsonPropertyName("orders")]
-    public IEnumerable<Order> Orders { get; set; }
+    public IEnumerable<Order>? Orders { get; set; }
 
 }
 
@@ -162,7 +159,7 @@ public class Order
     public string state { get; set; } = string.Empty;
 
     [JsonPropertyName("clientExtensions")]
-    public ClientExtensions clientExtensions { get; set; }
+    public ClientExtensions? ClientExtensions { get; set; }
 
 }
 
@@ -196,10 +193,10 @@ public class Position
     public string guaranteedExecutionFees { get; set; } = string.Empty;
 
     [JsonPropertyName("long")]
-    public PositionSide Long { get; set; }
+    public PositionSide? Long { get; set; }
 
     [JsonPropertyName("short")]
-    public PositionSide Short{ get; set; }
+    public PositionSide? Short{ get; set; }
 }
 
 public class PositionSide
@@ -211,7 +208,7 @@ public class PositionSide
     public string averagePrice { get; set; } = string.Empty;
 
     [JsonPropertyName("tradeIDs")]
-    public IEnumerable<string> tradeIDs { get; set; }
+    public IEnumerable<string>? TradeIDs { get; set; }
 
     [JsonPropertyName("pl")]
     public string pl { get; set; } = string.Empty;
@@ -251,57 +248,57 @@ public class TradeSummary
 
 
     [JsonPropertyName("state")]
-    public string state { get; set; } = string.Empty;
+    public string State { get; set; } = string.Empty;
 
     [JsonPropertyName("initialUnits")]
-    public string initialUnits { get; set; } = string.Empty;
+    public string InitialUnits { get; set; } = string.Empty;
 
     [JsonPropertyName("initialMarginRequired")]
-    public string initialMarginRequired { get; set; } = string.Empty;
+    public string InitialMarginRequired { get; set; } = string.Empty;
 
     [JsonPropertyName("currentUnits")]
-    public string currentUnits { get; set; } = string.Empty;
+    public string CurrentUnits { get; set; } = string.Empty;
 
     [JsonPropertyName("realizedPL")]
-    public string realizedPL { get; set; } = string.Empty;
+    public string RealizedPL { get; set; } = string.Empty;
 
     [JsonPropertyName("unrealizedPL")]
-    public string unrealizedPL { get; set; } = string.Empty;
+    public string UnrealizedPL { get; set; } = string.Empty;
 
     [JsonPropertyName("marginUsed")]
-    public string marginUsed { get; set; } = string.Empty;
+    public string MarginUsed { get; set; } = string.Empty;
 
     [JsonPropertyName("averageClosePrice")]
-    public string averageClosePrice { get; set; } = string.Empty;
+    public string AverageClosePrice { get; set; } = string.Empty;
 
 
     [JsonPropertyName("closingTransactionIDs")]
-    public IEnumerable<string> closingTransactionIDs { get; set; }
+    public IEnumerable<string>? ClosingTransactionIDs { get; set; }
 
     [JsonPropertyName("financing")]
-    public string financing { get; set; } = string.Empty;
+    public string Financing { get; set; } = string.Empty;
     
     [JsonPropertyName("dividendAdjustment")]
-    public string dividendAdjustment { get; set; } = string.Empty;
+    public string DividendAdjustment { get; set; } = string.Empty;
 
     [JsonPropertyName("closeTime")]
-    public DateTime? closeTime { get; set; }
+    public DateTime? CloseTime { get; set; }
 
 
     [JsonPropertyName("clientExtensions")]
-    public ClientExtensions clientExtensions { get; set; }
+    public ClientExtensions? ClientExtensions { get; set; }
 
     [JsonPropertyName("takeProfitOrderID")]
-    public string takeProfitOrderID { get; set; } = string.Empty;
+    public string TakeProfitOrderID { get; set; } = string.Empty;
 
     [JsonPropertyName("stopLossOrderID")]
-    public string stopLossOrderID { get; set; } = string.Empty;
+    public string StopLossOrderID { get; set; } = string.Empty;
 
     [JsonPropertyName("guaranteedStopLossOrderID")]
-    public string guaranteedStopLossOrderID { get; set; } = string.Empty;
+    public string GuaranteedStopLossOrderID { get; set; } = string.Empty;
 
     [JsonPropertyName("trailingStopLossOrderID")]
-    public string trailingStopLossOrderID { get; set; } = string.Empty;
+    public string TrailingStopLossOrderID { get; set; } = string.Empty;
 
 }
 

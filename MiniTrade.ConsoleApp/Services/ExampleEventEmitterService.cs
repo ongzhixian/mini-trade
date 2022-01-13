@@ -14,13 +14,17 @@ internal class ExampleEventEmitterService : BackgroundService
     {
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-        //TriggerEvent += ExampleEventEmitterService_TriggerEvent;
+        //TriggerEvent += ExampleEventEmitterService_TriggerEvent
     }
 
     public static void Test()
     {
         if (Notify != null)
-            Notify(null, new EventArgs());
+        {
+            var eventHandlerProxy = Notify;
+            eventHandlerProxy(null, new EventArgs());
+        }
+            
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -37,6 +41,7 @@ internal class ExampleEventEmitterService : BackgroundService
         }
     }
 
+#pragma warning disable S125 // Sections of code should not be commented out
     //public static void ExampleEventEmitterService_TriggerEvent(object? sender, EventArgs e)
     //{
     //    //logger.LogInformation("Fire event");
@@ -55,4 +60,7 @@ internal class ExampleEventEmitterService : BackgroundService
     //    //handler?.Invoke(sender, e);
     //    ThresholdReached?.Invoke(sender, e);
     //}
+#pragma warning restore S125 // Sections of code should not be commented out
+
 }
+

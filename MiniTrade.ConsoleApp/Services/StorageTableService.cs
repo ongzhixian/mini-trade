@@ -11,7 +11,7 @@ public class StorageTableService : BackgroundService
 {
     private readonly ILogger<StorageTableService> logger;
     private readonly IOptions<AzureStorageSetting> options;
-    private TableClient tableClient;
+    
 
     public StorageTableService(ILogger<StorageTableService> logger, IOptions<AzureStorageSetting> options)
     {
@@ -25,8 +25,10 @@ public class StorageTableService : BackgroundService
 
         await InitializeAsync(stoppingToken);
 
+#pragma warning disable S125 // Sections of code should not be commented out
         //if (serviceClient == null)
         //    throw new InvalidOperationException();
+#pragma warning restore S125 // Sections of code should not be commented out
 
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -48,8 +50,8 @@ public class StorageTableService : BackgroundService
             logger.LogInformation("Create table {tableName}", tableName);
 
         logger.LogInformation("Get table {tableName}", tableName);
-        
-        tableClient = tableServiceClient.GetTableClient(tableName);
+
+        TableClient tableClient = tableServiceClient.GetTableClient(tableName);
 
         string partitionKey = "stationaries";
         string rowKey = "k2";

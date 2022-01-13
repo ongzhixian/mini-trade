@@ -13,9 +13,10 @@ public class StorageBlobService : BackgroundService
 {
     private readonly ILogger<StorageBlobService> logger;
     private readonly IOptions<AzureStorageSetting> options;
-    private TableClient tableClient;
 
-    public StorageBlobService(ILogger<StorageBlobService> logger, IOptions<AzureStorageSetting> options)
+    public StorageBlobService(
+        ILogger<StorageBlobService> logger, 
+        IOptions<AzureStorageSetting> options)
     {
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         this.options = options ?? throw new ArgumentNullException(nameof(options));
@@ -27,8 +28,10 @@ public class StorageBlobService : BackgroundService
 
         await InitializeAsync(stoppingToken);
 
+#pragma warning disable S125 // Sections of code should not be commented out
         //if (serviceClient == null)
         //    throw new InvalidOperationException();
+#pragma warning restore S125 // Sections of code should not be commented out
 
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -40,6 +43,7 @@ public class StorageBlobService : BackgroundService
 
     private async Task InitializeAsync(CancellationToken stopToken)
     {
+#pragma warning disable S125 // Sections of code should not be commented out
         //const string tableName = "test";
 
         //TableServiceClient tableServiceClient = new(options.Value.ConnectionString);
@@ -64,6 +68,7 @@ public class StorageBlobService : BackgroundService
         //};
 
         //await tableClient.AddEntityAsync(entity, stopToken);
+#pragma warning restore S125 // Sections of code should not be commented out
 
         //////////////////////////////////////////
 
@@ -74,10 +79,9 @@ public class StorageBlobService : BackgroundService
         string containerName = "notes";
 
         // Create the container and return a container client object
-        // BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
+        // BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName)
 
-        BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
-
+#pragma warning disable S125 // Sections of code should not be commented out
         //if (await containerClient.ExistsAsync())
         //{
         //}
@@ -90,6 +94,9 @@ public class StorageBlobService : BackgroundService
         //{
         //    Console.WriteLine("containerClient  is NOT null");
         //}
+#pragma warning restore S125 // Sections of code should not be commented out
+
+        BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
 
         BlobClient blobClient = containerClient.GetBlobClient("my-in-memory.txt");
 
@@ -98,24 +105,22 @@ public class StorageBlobService : BackgroundService
         MemoryStream ms;
         using (ms = new MemoryStream())
         {
-            Azure.Response? response = await blobClient.DownloadToAsync(ms);
+            Azure.Response? response = await blobClient.DownloadToAsync(ms, stopToken);
+
+            logger.LogInformation("{response}", response);
         }
 
         Console.WriteLine("DOWNLOAD: {0}", Encoding.UTF8.GetString(ms.ToArray()));
-        
 
+
+#pragma warning disable S125 // Sections of code should not be commented out
         //using (MemoryStream ms = new MemoryStream())
         //{
         //    ms.Write(Encoding.UTF8.GetBytes("This is a sample text."));
-
         //    BlobClient blobClient = containerClient.GetBlobClient("my-in-memory.txt");
-
         //    ms.Seek(0, SeekOrigin.Begin);
-
         //    await blobClient.UploadAsync(ms, stopToken);
         //}
-
-
 
         // Create a local file in the ./data/ directory for uploading and downloading
         //string localPath = "./data/";
@@ -132,7 +137,8 @@ public class StorageBlobService : BackgroundService
 
         //// Upload data from the local file
         //await blobClient.UploadAsync(localFilePath, true);
-
+#pragma warning restore S125 // Sections of code should not be commented out
 
     }
+
 }

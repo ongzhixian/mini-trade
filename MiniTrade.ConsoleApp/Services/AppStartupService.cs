@@ -33,41 +33,41 @@ internal static class AppStartupService
         {
             RegisterConfigurationInstances(host, services);
 
-            // # RegisterHttpClients(services);
+            // # RegisterHttpClients(services)
 
-            //services.AddHttpClient();
+            //services.AddHttpClient()
             services.AddHttpClient<OandaApiService>();
 
-            // # RegisterCaching(services);
+            // # RegisterCaching(services)
 
             services.AddMemoryCache(); // default IMemoryCache implementation
 
-            // # RegisterServices(services);
+            // # RegisterServices(services)
 
-            //services.AddSingleton<IMyService, MyService>();
+            //services.AddSingleton<IMyService, MyService>()
 
-            // # RegisterHostedServices(services);
+            // # RegisterHostedServices(services)
 
-            //services.AddHostedService<ExampleHostedService>();
-            //services.AddHostedService<ExampleBackgroundService>();
+            //services.AddHostedService<ExampleHostedService>()
+            //services.AddHostedService<ExampleBackgroundService>()
             services.AddHostedService<ExampleEventEmitterService>();
 
             // # Azure (examples)
 
-            //services.AddHostedService<PubSubConsumerService>();
-            //services.AddHostedService<PubSubPublisherService>();
-            //services.AddHostedService<QueuePublisherService>();
-            //services.AddHostedService<QueueConsumerService>();
-            //services.AddHostedService<StorageTableService>();
-            //services.AddHostedService<StorageBlobService>();
+            //services.AddHostedService<PubSubConsumerService>()
+            //services.AddHostedService<PubSubPublisherService>()
+            //services.AddHostedService<QueuePublisherService>()
+            //services.AddHostedService<QueueConsumerService>()
+            //services.AddHostedService<StorageTableService>()
+            //services.AddHostedService<StorageBlobService>()
 
             // # Mongo (examples)
 
-            //services.AddHostedService<MongoDbMiniToolsService>();
+            //services.AddHostedService<MongoDbMiniToolsService>()
 
             // # Oanda 
 
-            //services.AddHostedService<TradeStrategyService>();
+            //services.AddHostedService<TradeStrategyService>()
 
         });
     }

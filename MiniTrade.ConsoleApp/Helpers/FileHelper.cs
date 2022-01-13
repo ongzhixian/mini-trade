@@ -7,8 +7,6 @@ namespace MiniTrade.ConsoleApp.Helpers
     {
         public static void SaveStringToFile(string relativePath, string data)
         {
-            string outputPath = "cache/sample-cache.json";
-
             string fullPath = Path.GetFullPath(relativePath);
 
             string? directoryName = Path.GetDirectoryName(fullPath);
@@ -16,11 +14,9 @@ namespace MiniTrade.ConsoleApp.Helpers
             if ((directoryName != null) && (!Directory.Exists(directoryName)))
                 Directory.CreateDirectory(directoryName);
 
-            using (StreamWriter sw = new StreamWriter(relativePath, false, Encoding.UTF8))
-            {
-                sw.AutoFlush = true;
-                sw.Write(data);
-            }
+            using StreamWriter sw = new(relativePath, false, Encoding.UTF8);
+            sw.AutoFlush = true;
+            sw.Write(data);
 
         }
 
@@ -51,8 +47,6 @@ namespace MiniTrade.ConsoleApp.Helpers
 
         internal static void SaveToFile<T>(string relativePath, T accounts)
         {
-            string outputPath = "cache/sample-cache.json";
-
             string fullPath = Path.GetFullPath(relativePath);
 
             string? directoryName = Path.GetDirectoryName(fullPath);
@@ -60,14 +54,10 @@ namespace MiniTrade.ConsoleApp.Helpers
             if ((directoryName != null) && (!Directory.Exists(directoryName)))
                 Directory.CreateDirectory(directoryName);
 
-            using (StreamWriter sw = new StreamWriter(relativePath, false, Encoding.UTF8))
-            {
-                sw.AutoFlush = true;
-
-                var data = JsonSerializer.Serialize<T>(accounts);
-
-                sw.Write(data);
-            }
+            using StreamWriter sw = new(relativePath, false, Encoding.UTF8);
+            sw.AutoFlush = true;
+            var data = JsonSerializer.Serialize<T>(accounts);
+            sw.Write(data);
         }
     }
 }

@@ -12,9 +12,10 @@ public class MongoDbMiniToolsService : BackgroundService
 {
     private readonly ILogger<MongoDbMiniToolsService> logger;
     private readonly IOptions<MongoDbSetting> options;
-    private TableClient tableClient;
 
-    public MongoDbMiniToolsService(ILogger<MongoDbMiniToolsService> logger, IOptions<MongoDbSetting> options)
+    public MongoDbMiniToolsService(
+        ILogger<MongoDbMiniToolsService> logger, 
+        IOptions<MongoDbSetting> options)
     {
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         this.options = options ?? throw new ArgumentNullException(nameof(options));

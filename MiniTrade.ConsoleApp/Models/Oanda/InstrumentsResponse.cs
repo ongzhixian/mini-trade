@@ -5,7 +5,7 @@ namespace MiniTrade.ConsoleApp.Models.Oanda;
 internal class InstrumentsResponse
 {
     [JsonPropertyName("instruments")]
-    public IEnumerable<Instrument> Instruments { get; set; }
+    public IEnumerable<Instrument>? Instruments { get; set; }
 
     [JsonPropertyName("lastTransactionID")]
     public string LastTransactionID { get; set; } = string.Empty;
@@ -15,63 +15,63 @@ internal class InstrumentsResponse
 public class Instrument
 {
     [JsonPropertyName("name")]
-    public string name { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     [JsonPropertyName("type")]
     public string Type { get; set; } = string.Empty;
 
     [JsonPropertyName("displayName")]
-    public string displayName { get; set; } = string.Empty;
+    public string DisplayName { get; set; } = string.Empty;
 
 
     [JsonPropertyName("pipLocation")]
-    public int pipLocation { get; set; }
+    public int PipLocation { get; set; }
 
     [JsonPropertyName("displayPrecision")]
-    public int displayPrecision { get; set; }
+    public int DisplayPrecision { get; set; }
 
     [JsonPropertyName("tradeUnitsPrecision")]
-    public int tradeUnitsPrecision { get; set; }
+    public int TradeUnitsPrecision { get; set; }
 
 
     [JsonPropertyName("minimumTradeSize")]
-    public string minimumTradeSize { get; set; } = string.Empty;
+    public string MinimumTradeSize { get; set; } = string.Empty;
 
     [JsonPropertyName("maximumTrailingStopDistance")]
-    public string maximumTrailingStopDistance { get; set; } = string.Empty;
+    public string MaximumTrailingStopDistance { get; set; } = string.Empty;
 
     [JsonPropertyName("minimumGuaranteedStopLossDistance")]
-    public string minimumGuaranteedStopLossDistance { get; set; } = string.Empty;
+    public string MinimumGuaranteedStopLossDistance { get; set; } = string.Empty;
 
     [JsonPropertyName("minimumTrailingStopDistance")]
-    public string minimumTrailingStopDistance { get; set; } = string.Empty;
+    public string MinimumTrailingStopDistance { get; set; } = string.Empty;
 
     [JsonPropertyName("maximumPositionSize")]
-    public string maximumPositionSize { get; set; } = string.Empty;
+    public string MaximumPositionSize { get; set; } = string.Empty;
 
     [JsonPropertyName("maximumOrderUnits")]
-    public string maximumOrderUnits { get; set; } = string.Empty;
+    public string MaximumOrderUnits { get; set; } = string.Empty;
 
     [JsonPropertyName("marginRate")]
-    public string marginRate { get; set; } = string.Empty;
+    public string MarginRate { get; set; } = string.Empty;
 
     [JsonPropertyName("commission")]
-    public InstrumentCommission commission { get; set; }
+    public InstrumentCommission? Commission { get; set; }
 
     [JsonPropertyName("guaranteedStopLossOrderMode")]
-    public string guaranteedStopLossOrderMode { get; set; } = string.Empty;
+    public string GuaranteedStopLossOrderMode { get; set; } = string.Empty;
 
     [JsonPropertyName("guaranteedStopLossOrderExecutionPremium")]
-    public string guaranteedStopLossOrderExecutionPremium { get; set; } = string.Empty;
+    public string GuaranteedStopLossOrderExecutionPremium { get; set; } = string.Empty;
 
     [JsonPropertyName("guaranteedStopLossOrderLevelRestriction")]
-    public GuaranteedStopLossOrderLevelRestriction guaranteedStopLossOrderLevelRestriction { get; set; }
+    public GuaranteedStopLossOrderLevelRestriction? GuaranteedStopLossOrderLevelRestriction { get; set; }
 
     [JsonPropertyName("financing")]
-    public InstrumentFinancing financing { get; set; }
+    public InstrumentFinancing? Financing { get; set; }
 
     [JsonPropertyName("tags")]
-    public IEnumerable<Tag> tags { get; set; }
+    public IEnumerable<Tag>? Tags { get; set; }
 }
 
 public class Tag
@@ -96,7 +96,7 @@ public class InstrumentFinancing
     public string shortRate { get; set; } = string.Empty;
 
     [JsonPropertyName("financingDaysOfWeek")]
-    public IEnumerable<FinancingDayOfWeek> financingDaysOfWeek { get; set; }
+    public IEnumerable<FinancingDayOfWeek>? financingDaysOfWeek { get; set; }
 
 }
 
