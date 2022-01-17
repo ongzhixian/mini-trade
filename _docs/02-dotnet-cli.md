@@ -34,14 +34,28 @@ dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Net.Http.Headers
 
 dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.Caching.Memory
 
-Microsoft.Data.Analysis
-Microsoft.ML
+dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Data.Analysis
+
+dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.ML
+Microsoft.ML.OnnxRuntime
+
+
+dotnet add .\MiniTrade.ConsoleApp\ package SkiaSharp
 
 Microsoft.ML.Probabilistic
 Microsoft.ML.Probabilistic.Compiler
 Microsoft.ML.Probabilistic.Learners
 Microsoft.ML.Probabilistic.Visualizers.Windows
 Microsoft.ML.Probabilistic.Compiler.Visualizers.Window
+
+
+SixLabors.ImageSharp
+
+MathNet.Numerics
+ALGLIB
+DotNumerics
+NLinear
+Finaquant Protos
 
 
 dotnet add .\MiniTrade.ConsoleApp\ package Serilog

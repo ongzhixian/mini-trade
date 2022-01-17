@@ -13,6 +13,17 @@ using AppStartup = MiniTrade.ConsoleApp.Services.AppStartupService;
 
 IHostBuilder builder = Host.CreateDefaultBuilder(args);
 
+//Environments.Production
+//foreach (var item in Environment.GetCommandLineArgs())
+//{
+//    Console.WriteLine($"Arg: [{item}]");
+//}
+//foreach (var item in args)
+//{
+//    Console.WriteLine($"Arg2: [{item}]");
+//}
+
+
 #pragma warning disable S125 // Sections of code should not be commented out
 //builder.UseContentRoot(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
 #pragma warning restore S125 // Sections of code should not be commented out
@@ -72,13 +83,36 @@ using (IHost host = builder.Build())
 
         // Subscribe
         //ExampleEventEmitterService.Notify += ExampleEventEmitterService.ExampleEventEmitterService_TriggerEvent;
-        ExampleEventEmitterService.Notify += delegate (object? sender, EventArgs e)
+        //ExampleEventEmitterService.Notify += delegate (object? sender, EventArgs e)
+        //{
+        //    Console.WriteLine("asd");
+        //};
+
+        // Place one-time execution console-app
+
+        // Load OHLCV
+        string[] columnNames =
         {
-            Console.WriteLine("asd");
+            "date", "time", "open", "high", "low", "close", "volume"
         };
+        using (FileStream fs = new FileStream(@"C:\data\oanda\XAUUSD-e60.csv", FileMode.Open))
+        {
+            var df = Microsoft.Data.Analysis.DataFrame.LoadCsv(fs, header: false, columnNames: columnNames);
+            var last_n_periods = df.Tail(30);
+            //last_n_periods["close"].
+        }
 
+        //AnalyzeSentiment analyzeSentiment = new AnalyzeSentiment();
+        //analyzeSentiment.DoWork();
 
-        await host.RunAsync();
+        //DrawTest test = new DrawTest();
+        //test.DoDraw();
+
+        MiniTrade.ConsoleApp.Models.Game.PokerCardDeck deck = new MiniTrade.ConsoleApp.Models.Game.PokerCardDeck();
+        //deck.PrintCards();
+        deck.Shuffle();
+
+        //await host.RunAsync();
     }
     catch (Exception ex)
     {
