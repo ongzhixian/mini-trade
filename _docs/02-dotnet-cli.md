@@ -37,8 +37,17 @@ dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Extensions.Caching.Memory
 dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.Data.Analysis
 
 dotnet add .\MiniTrade.ConsoleApp\ package Microsoft.ML
+
+Microsoft.ML.TimeSeries
+Microsoft.ML.Recommender
+Microsoft.ML.AutoML
+
+Needed to save to Onnx format
+Microsoft.ML.OnnxConverter 
 Microsoft.ML.OnnxRuntime
 
+Although there's a "AspNetCore", it does not use AspNetCore components
+dotnet add .\MiniTrade.ConsoleApp\ package MiniProfiler.AspNetCore
 
 dotnet add .\MiniTrade.ConsoleApp\ package SkiaSharp
 
@@ -48,6 +57,8 @@ Microsoft.ML.Probabilistic.Learners
 Microsoft.ML.Probabilistic.Visualizers.Windows
 Microsoft.ML.Probabilistic.Compiler.Visualizers.Window
 
+
+----
 
 SixLabors.ImageSharp
 

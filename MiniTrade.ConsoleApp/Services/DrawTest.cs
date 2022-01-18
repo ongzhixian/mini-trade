@@ -46,8 +46,26 @@ internal class DrawTest
                 fs.Write(helloBitmap.Encode(SKEncodedImageFormat.Png, 0).ToArray());
             }
 
-
-
         }
+    }
+
+    public void DrawSimple()
+    {
+        using SKBitmap helloBitmap = new(300, 300, false);
+        using SKCanvas bitmapCanvas = new(helloBitmap);
+        bitmapCanvas.Clear();
+
+        SKPoint src = new SKPoint(0, 0);
+        SKPoint dst = new SKPoint(100, 100);
+        SKPaint paint = new SKPaint();
+        paint.Color = SKColor.FromHsv(100, 100, 100);
+
+        bitmapCanvas.DrawLine(src, dst, paint);
+
+        using (System.IO.FileStream fs = new FileStream(@"C:\data\oanda\simple.png", FileMode.OpenOrCreate))
+        {
+            fs.Write(helloBitmap.Encode(SKEncodedImageFormat.Png, 0).ToArray());
+        }
+
     }
 }

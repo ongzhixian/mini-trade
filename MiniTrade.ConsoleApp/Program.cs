@@ -105,12 +105,15 @@ using (IHost host = builder.Build())
         //AnalyzeSentiment analyzeSentiment = new AnalyzeSentiment();
         //analyzeSentiment.DoWork();
 
-        //DrawTest test = new DrawTest();
-        //test.DoDraw();
 
-        MiniTrade.ConsoleApp.Models.Game.PokerCardDeck deck = new MiniTrade.ConsoleApp.Models.Game.PokerCardDeck();
+        //MiniTrade.ConsoleApp.Models.Game.PokerCardDeck deck = new MiniTrade.ConsoleApp.Models.Game.PokerCardDeck();
         //deck.PrintCards();
-        deck.Shuffle();
+        //deck.Shuffle();
+
+
+        DrawTest test = new DrawTest();
+        //test.DoDraw();
+        test.DrawSimple();
 
         //await host.RunAsync();
     }
