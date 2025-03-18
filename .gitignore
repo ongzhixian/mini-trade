@@ -358,3 +358,4 @@ ako.ps1
 **/deploy.zip
 .azure
 **/LivingDoc.html
+.idea/
